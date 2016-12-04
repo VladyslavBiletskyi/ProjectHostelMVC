@@ -4,25 +4,32 @@ body{
 }
 
 .thumbnail{
-    height: 500px;
+    height: 300px;
 }
 .banner{
     background: url("../images/banner.jpg");
     background-size: cover;
 }
 .board{
-    height: 430px;
+    height: 230px;
+    overflow: auto;
+    margin-bottom: 5px;
 }
 h1,h2{
     text-align: center;
     color: white;
 }
 p.description{
+    height: auto;
     text-align: justify;
     line-height: 2;
     color: white;
 }
 div.description{
+    height: auto;
     background: url("../images/background.jpg");
     text-align: center;
+}
+.row.about{
+    height: 500px;
 }
