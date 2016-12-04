@@ -13,14 +13,16 @@ body{
 .board{
     height: 430px;
 }
-h1{
+h1,h2{
     text-align: center;
     color: white;
 }
 p.description{
     text-align: justify;
     line-height: 2;
+    color: white;
 }
 div.description{
+    background: url("../images/background.jpg");
     text-align: center;
 }
