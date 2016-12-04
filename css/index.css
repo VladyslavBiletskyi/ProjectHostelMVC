@@ -29,6 +29,7 @@ div.description{
     height: auto;
     background: url("../images/background.jpg");
     text-align: center;
+    margin-top: 20px;
 }
 .row.about{
     height: 500px;
