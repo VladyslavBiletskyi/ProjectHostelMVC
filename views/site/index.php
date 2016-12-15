@@ -29,9 +29,9 @@
                         Этажи<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Этаж 1</a></li>
-                        <li><a href="#">Этаж 2</a></li>
-                        <li><a href="#">Этаж 3</a></li>
+                        <li><a href="/floor/1">Этаж 1</a></li>
+                        <li><a href="/floor/2">Этаж 2</a></li>
+                        <li><a href="/floor/3">Этаж 3</a></li>
                     </ul>
                 </li>
                 <li><a href="#" data-toggle="modal" data-target="#modalAuth">Войти</a></li>

@@ -15,7 +15,7 @@ body{
     overflow: auto;
     margin-bottom: 5px;
 }
-h1,h2{
+h1,h2,h3{
     text-align: center;
     color: white;
 }
@@ -41,4 +41,10 @@ div.description{
 .input-group{
     margin-top:5px;
     margin-bottom: 5px;
+}
+.room{
+    margin-bottom: 10px!important;
+}
+.roomList{
+    height: 300px;
 }
