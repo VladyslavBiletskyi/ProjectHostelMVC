@@ -127,6 +127,13 @@
             </div>
         </div>
     </div>
+    <hr/>
+    <div class="row">
+        <div class="col col-xs-12">
+            <h3>Схема этажа</h3>
+            <img src="/images/floorSchema.jpg" class="floorSchema">
+        </div>
+    </div>
 </div>
 <div class="container">
     <p class="text-muted">&copy; NURE 2016</p>

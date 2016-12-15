@@ -34,7 +34,6 @@ div.description{
 .row.about{
     height: 500px;
 }
-
 .modal-footer{
     text-align: center;
 }
@@ -42,9 +41,15 @@ div.description{
     margin-top:5px;
     margin-bottom: 5px;
 }
+
 .room{
     margin-bottom: 10px!important;
 }
 .roomList{
     height: 300px;
+}
+.floorSchema{
+    display: block;
+    max-width: 100%;
+    margin-bottom: 20px;
 }
