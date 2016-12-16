@@ -4,3 +4,4 @@ composer create-project laravel/laravel --prefer-dist - create a new laravel pro
 php artisan make:model User -m - create a User model with migration
 php artisan route:list
 composer dump-autoload - to get rid of migration mistakes
+php artisan make:seeder UsersTableSeeder

@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Эмблема</a>
+            <a class="navbar-brand" href="/">HS</a>
         </div>
 
         <div class="collapse navbar-collapse" id="index-navbar-collapse">
@@ -48,19 +48,22 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Вход</h4>
             </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" placeholder="Логин">
+            <form method="post" action="{{ route('signin') }}">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" name="password" class="form-control" placeholder="Пароль">
+                        <input type="hidden" name="_token" value="{{ Session::token() }}"/>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Пароль">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Войти</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Войти</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
