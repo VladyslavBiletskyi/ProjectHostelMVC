@@ -53,3 +53,10 @@ div.description{
     max-width: 100%;
     margin-bottom: 20px;
 }
+.inputs{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#signup-form span{
+    min-width: 40px;
+}

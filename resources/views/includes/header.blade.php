@@ -13,9 +13,9 @@
 
         <div class="collapse navbar-collapse" id="index-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Главная</a></li>
+                <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Главная</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-list" aria-hidden="true"></i>
                         Этажи<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -24,7 +24,18 @@
                         <li><a href="/floor/3">Этаж 3</a></li>
                     </ul>
                 </li>
-                <li><a href="#" data-toggle="modal" data-target="#modalAuth">Войти</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user" aria-hidden="true"></i>
+                        Аккаунт<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="modal" data-target="#modalAuth"><i class="fa fa-sign-in" aria-hidden="true"></i>
+                                Вход</a></li>
+                        <li><a href="{{ route('signup') }}"><i class="fa fa-book" aria-hidden="true"></i> Регистрация</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

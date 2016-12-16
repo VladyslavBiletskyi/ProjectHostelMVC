@@ -5,9 +5,7 @@
 
 @section('content')
     <div class="container">
-        <div class="page-header">
-            <h1>Hostel system</h1>
-        </div>
+
         <div class="row">
             <div class="col col-xs-12 col-md-6">
                 <!--<div class="thumbnail banner">-->
@@ -109,39 +107,8 @@
                             mollit anim id est laborum.</p>
                         <br>
                         <!--modal for registration-->
-                        <div class="modal fade" id="modalReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">Регистрация</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input type="text" class="form-control" placeholder="Ф.И.О пользователя">
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">@</span>
-                                            <input type="text" class="form-control" placeholder="Email">
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon">№</span>
-                                            <input type="text" class="form-control" placeholder="№ Ст. билета">
-                                        </div>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input type="password" class="form-control" placeholder="Пароль">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Зарегистрироваться</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalReg">Регистрация</button>
-                    </div>
+
+                        <a href="#" class="btn btn-primary btn-lg">Регистрация</a>
                 </div>
             </div>
             <div class="col col-xs-0 col-md-3">

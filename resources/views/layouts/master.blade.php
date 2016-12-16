@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap-theme.css') }}"/>
     <link rel="stylesheet" href="{{ URL::to('css/index.css') }}"/>
-
+    <link rel="stylesheet" href="{{ URL::to('css/font-awesome.min.css') }}"/>
 
     <title>@yield('title')</title>
 </head>
@@ -22,6 +22,7 @@
 </body>
 <script type="text/javascript" src="{{ URL::to('js/jquery-3.1.1.js') }}"></script>
 <script type="text/javascript" src="{{ URL::to('js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ URL::to('js/bootstrap-filestyle.js') }}"></script>
 <script type="text/javascript" src="{{ URL::to('js/index.js') }}"></script>
 
 </html>
