@@ -29,3 +29,8 @@ Route::get('/user', [
     'uses' => 'UserController@getUserIndex',
     'as' => 'user'
 ]);
+
+Route::post('/sendrequest', [
+    'uses' => 'UserController@postSendRegisterRequest',
+    'as' => 'sendrequest'
+]);

@@ -52,11 +52,11 @@
                 <div class="modal-body">
                     <div class="input-group">
                         <span class="input-group-addon">@</span>
-                        <input type="text" class="form-control" name="email" placeholder="Email">
+                        <input type="text" class="form-control" name="email" placeholder="Email" required>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" name="password" class="form-control" placeholder="Пароль">
+                        <input type="password" name="password" class="form-control" placeholder="Пароль" required>
                         <input type="hidden" name="_token" value="{{ Session::token() }}"/>
                     </div>
                 </div>
