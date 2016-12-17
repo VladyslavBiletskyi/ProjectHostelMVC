@@ -34,3 +34,7 @@ Route::post('/sendrequest', [
     'uses' => 'UserController@postSendRegisterRequest',
     'as' => 'sendrequest'
 ]);
+Route::get('/room', [
+    'uses' => 'RoomController@getRoomIndex',
+    'as' => 'room'
+]);
