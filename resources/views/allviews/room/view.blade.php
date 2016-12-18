@@ -44,7 +44,7 @@
         <div class="col col-xs-12 col-md-6">
             <div class="thumbnail description">
                 <div class="caption">
-                    <h2>О нас</h2>
+                    <h2>Описание</h2>
                     <p class="description">
                         Прекрасная комната для жизни и смерти! Только самые свежие
                         и хрустящие тараканы специально для вас!
@@ -74,10 +74,23 @@
                 </div>
             </div>
         </div>
+        <div class="col col-xs-12 col-md-6">
+            <div class="thumbnail description">
+                <div class="caption">
+                    <h2>Список жильцов</h2>
+                    <p class="description">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a class="roomMemberItem" href="#">Михалыч</a></li>
+                            <li class="list-group-item"><a class="roomMemberItem" href="#">Петрович</a></li>
+                            <li class="list-group-item"><a class="roomMemberItem" href="#">Семёныч</a></li>
+                            <li class="list-group-item"><a class="roomMemberItem" href="#">Романыч</a></li>
+                            <li class="list-group-item"><a class="roomMemberItem" href="#">Лобаныч</a></li>
+                        </ul>
+                    </p>
+                    <br>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
-
 @endsection

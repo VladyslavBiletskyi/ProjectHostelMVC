@@ -60,3 +60,6 @@ div.description{
 #signup-form span{
     min-width: 40px;
 }
+.roomMemberItem{
+    cursor: pointer;
+}
