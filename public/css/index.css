@@ -57,7 +57,7 @@ div.description{
     margin-top: 20px;
     margin-bottom: 20px;
 }
-span{
+form span{
     min-width: 40px;
 }
 .roomMemberItem{
@@ -70,4 +70,5 @@ span{
 .studentList{
     overflow: auto;
     max-height: 330px;
+    margin-top: 20px;
 }
