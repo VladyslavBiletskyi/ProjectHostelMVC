@@ -9,6 +9,9 @@
         <div class="page-header">
             <h1>Заявка на регистрацию</h1>
         </div>
+
+        @include('includes.message')
+
         <div class="row">
             <div class="col-sm-12 col-md-8 col-md-offset-2">
                 <form class="form-horizontal" method="post" action="{{route('sendrequest')}}" id="signup-form" enctype="multipart/form-data">

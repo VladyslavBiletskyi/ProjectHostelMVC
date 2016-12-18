@@ -108,7 +108,7 @@
                         <br>
                         <!--modal for registration-->
 
-                        <a href="#" class="btn btn-primary btn-lg">Регистрация</a>
+                        <a href="{{route('signup')}}" class="btn btn-primary btn-lg">Регистрация</a>
                 </div>
             </div>
             <div class="col col-xs-0 col-md-3">

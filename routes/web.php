@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'uses' => 'HomeController@getIndex',
+    'as' => 'welcome'
+]);
+
+Route::get('/about', [
+    'uses' => 'HomeController@getAbout',
+    'as' => 'about'
+]);
 
 Route::get('/signup', [
     'uses' => 'UserController@getSignUp',
@@ -22,12 +28,13 @@ Route::get('/signup', [
 
 Route::post('/signin', [
     'uses' => 'UserController@postSignIn',
-    'as' => 'signin'
+    'as' => 'signin',
 ]);
 
 Route::get('/user', [
     'uses' => 'UserController@getUserIndex',
-    'as' => 'user'
+    'as' => 'user',
+    'middleware' => 'auth'
 ]);
 
 Route::post('/sendrequest', [
@@ -36,5 +43,15 @@ Route::post('/sendrequest', [
 ]);
 Route::get('/room', [
     'uses' => 'RoomController@getRoomIndex',
-    'as' => 'room'
+    'as' => 'room',
+    'middleware' => 'auth'
+]);
+Route::post('/register', [
+    'uses' => 'UserController@postRegister',
+    'as' => 'register',
+    'middleware' => 'auth'
+]);
+Route::get('/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'logout'
 ]);

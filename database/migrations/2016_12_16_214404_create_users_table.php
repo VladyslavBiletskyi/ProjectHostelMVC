@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string("password", 255);
             $table->integer("room")->nullable();
             $table->boolean("is_admin");
-
+            $table->rememberToken();
         });
     }
 

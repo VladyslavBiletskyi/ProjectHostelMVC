@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">HS</a>
+            <a class="navbar-brand" href="{{route('welcome')}}">HS</a>
         </div>
 
         <div class="collapse navbar-collapse" id="index-navbar-collapse">
@@ -31,9 +31,15 @@
                         Аккаунт<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="modal" data-target="#modalAuth"><i class="fa fa-sign-in" aria-hidden="true"></i>
-                                Вход</a></li>
-                        <li><a href="{{ route('signup') }}"><i class="fa fa-book" aria-hidden="true"></i> Регистрация</a></li>
+                        @if(Auth::user())
+                            <li><a href="{{route('logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    Выход</a></li>
+                        @else
+                            <li><a href="#" data-toggle="modal" data-target="#modalAuth"><i class="fa fa-sign-in" aria-hidden="true"></i>
+                                    Вход</a></li>
+                            <li><a href="{{ route('signup') }}"><i class="fa fa-book" aria-hidden="true"></i> Регистрация</a></li>
+
+                        @endif
                     </ul>
                 </li>
             </ul>

@@ -1,9 +1,9 @@
 <html>
 <head></head>
 <body>
-<h1>{{$title}}</h1>
-<p>{{$name}}</p>
-<p>{{$email}}</p>
-<p>{{$faculty}}</p>
+<h1>Заявка на регистрацию</h1>
+<p>ФИО: {{$name}}</p>
+<p>E-Mail: {{$email}}</p>
+<p>Факультет: {{$faculty}}</p>
 </body>
 </html>

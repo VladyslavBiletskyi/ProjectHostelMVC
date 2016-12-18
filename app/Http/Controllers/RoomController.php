@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Storage;
 // to work with files
 use Illuminate\Support\Facades\File;
 
-class RoomController
+class RoomController extends Controller
 {
     public function getRoomIndex()
     {
