@@ -28,7 +28,7 @@
                         <input type="text" class="form-control" name="faculty" placeholder="Факультет" required>
                     </div>
                     <div class="input-group inputs">
-                        <span class="input-group-addon"><i class="fa fa-locked"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <input type="password" class="form-control" name="password" placeholder="Пароль" required>
                     </div>
                     <div class="input-group inputs">

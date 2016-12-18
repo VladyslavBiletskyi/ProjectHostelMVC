@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user" aria-hidden="true"></i>
-                        Аккаунт<span class="caret"></span>
+                        Аккаунт <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         @if(Auth::user())
