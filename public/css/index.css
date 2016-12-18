@@ -63,3 +63,11 @@ span{
 .roomMemberItem{
     cursor: pointer;
 }
+.nav-tabs li a{
+    font-weight: bold;
+}
+
+.studentList{
+    overflow: auto;
+    max-height: 330px;
+}
