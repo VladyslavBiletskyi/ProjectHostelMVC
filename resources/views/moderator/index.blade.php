@@ -87,7 +87,10 @@
                             </div>
                             <div class="input-group inputs">
                                 <span class="input-group-addon"><i class="fa fa-question"></i></span>
-                                <input type="text" class="form-control" name="is_admin" placeholder="" required>
+                                <select class="form-control" name="is_admin" required>
+                                    <option value="Нет" selected>Не модератор</option>
+                                    <option value="Да">Модератор</option>
+                                </select>
                             </div>
                             <input type="hidden" name="_token" value="{{ Session::token() }}"/>
                                     <button type="submit" class="btn btn-success">Зарегистрировать</button>

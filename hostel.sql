@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2016 at 12:33 PM
+-- Generation Time: Dec 21, 2016 at 01:14 PM
 -- Server version: 5.5.53-0ubuntu0.14.04.1
 -- PHP Version: 5.6.23-1+deprecated+dontuse+deb.sury.org~trusty+1
 
@@ -180,15 +180,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_admin` tinyint(1) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `username`, `email`, `faculty`, `password`, `room_id`, `is_admin`, `remember_token`) VALUES
-(1, NULL, NULL, 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$fLj17YnvqlkW2sBZbsECLOi0vIHE45b0E19.fv.GQ97Xd6U8Cl9M2', 0, 1, NULL),
-(2, NULL, NULL, 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$cDF94RRKS0sa8v6xODxw..JzOFMVqxc0uyaQ6j87Qrvo2zF565Gz6', 0, 1, NULL);
+(1, NULL, '2016-12-21 08:41:01', 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$fLj17YnvqlkW2sBZbsECLOi0vIHE45b0E19.fv.GQ97Xd6U8Cl9M2', 0, 1, '20jbyV0nZqXzIG34c5wakRdsd04k5zTfotydhAmHKFiPGBvMyIYUhe1SkMln'),
+(2, NULL, NULL, 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$cDF94RRKS0sa8v6xODxw..JzOFMVqxc0uyaQ6j87Qrvo2zF565Gz6', 0, 1, NULL),
+(3, '2016-12-21 09:08:36', '2016-12-21 09:08:36', 'Чурсина Татьяна Сергеевна', 'tetiana.chursina@nure.ua', 'КН', '$2y$10$gB777vyBBC3YicvkUjfcN.BPmV2PfjQD8ElWBD.hgBDAf.ndi6ioK', 0, 0, NULL),
+(4, '2016-12-21 09:14:03', '2016-12-21 09:14:03', 'Билецкий Владислав', 'vladyslav.biletskyi@nure.ua', 'КН', '$2y$10$Au4MFv2N7ZRrFX9paKtNseuYNxEtrQWqSd1HDTv.KE77t59JNDm/e', 0, 1, NULL);
 
 --
 -- Constraints for dumped tables
