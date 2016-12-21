@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ URL::to('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap-theme.css') }}"/>
     <link rel="stylesheet" href="{{ URL::to('css/index.css') }}"/>

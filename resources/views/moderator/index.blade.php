@@ -120,31 +120,30 @@
                     <h3>Комнаты</h3>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
+                            <div class="studentList">
                             @foreach($floors as $floor)
                                 @foreach($rooms as $room)
                                     @if($room->floor_id == $floor->floor_id)
-                                        <div class="studentList">
-                                            <div class="list-group">
-                                                <a href="#" class="list-group-item active">
-                                                    <h4 class="list-group-item-heading">Комната №{{$room->id}}</h4>
-                                                    <p class="list-group-item-text">Этаж: {{$room->floor_id}}, Количество мест: {{$room->places}}</p>
-                                                </a>
-                                            </div>
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item active">
+                                                <h4 class="list-group-item-heading">Комната №{{$room->id}}</h4>
+                                                <p class="list-group-item-text">Этаж: {{$room->floor_id}}, Количество мест: {{$room->places}}</p>
+                                            </a>
                                         </div>
                                     @endif
                                 @endforeach
-                                <hr/>
                             @endforeach
+                            </div>
                         </div>
                         <div class="col col-sm-12 col-md-6">
                             <form enctype="multipart/form-data" class="text-center" method="post" action="{{route('add_room')}}">
                                 <div class="input-group inputs">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                    <input type="text" class="form-control" name="id" placeholder="Номер">
+                                    <input type="number" class="form-control" name="id" placeholder="Номер">
                                 </div>
                                 <div class="input-group inputs">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input type="text" class="form-control" name="places" placeholder="Количество мест">
+                                    <span class="input-group-addon">№</span>
+                                    <input type="number" class="form-control" name="places" placeholder="Количество мест">
                                 </div>
                                 <select class="form-control" name="floor_id">
                                     <option disabled selected>Этаж</option>
