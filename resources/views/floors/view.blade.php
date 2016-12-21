@@ -35,10 +35,11 @@
             </div>
             <div class="col col-xs-12 col-md-6">
                 <h3>Комнаты</h3>
+
                 <div class="board roomList">
                     <ul class="list-group text-center ">
-                        @foreach($floor->rooms as $room)
-                            <a href="#">
+                        @foreach($rooms as $room)
+                            <a href="{{route('rooms.view', $room->id)}}">
                                 <li class="list-group-item room">
                                     <span class="badge">{{$room->places}}</span>
                                         Комната № {{$room->id}}

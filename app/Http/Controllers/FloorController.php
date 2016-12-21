@@ -16,7 +16,8 @@ class FloorController extends Controller
     {
         $floor_id = intval($floor_id);
         $floor = Floor::where('floor_id', '=', $floor_id)->first();
-        return view('floors.view', ['floor' => $floor]);
+        $rooms = Room::where('floor_id', '=', $floor_id)->get();
+        return view('floors.view', ['floor' => $floor, 'rooms' => $rooms]);
     }
 
     public function postAddFloor(Request $request)
