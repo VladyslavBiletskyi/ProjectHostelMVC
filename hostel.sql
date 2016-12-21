@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2016 at 01:14 PM
+-- Generation Time: Dec 21, 2016 at 06:26 PM
 -- Server version: 5.5.53-0ubuntu0.14.04.1
 -- PHP Version: 5.6.23-1+deprecated+dontuse+deb.sury.org~trusty+1
 
@@ -43,22 +43,21 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `floors` (
-  `id` int(10) unsigned NOT NULL,
+  `floor_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`floor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `floors`
 --
 
-INSERT INTO `floors` (`id`, `created_at`, `updated_at`, `description`) VALUES
+INSERT INTO `floors` (`floor_id`, `created_at`, `updated_at`, `description`) VALUES
 (1, NULL, NULL, 'Первый этаж общежития <№ 4>.'),
 (2, NULL, NULL, 'Второй этаж общежития <№ 4>.'),
-(3, NULL, NULL, 'Третий этаж общежития <№ 4>.'),
-(4, NULL, NULL, 'Четвертый этаж общежития <№ 4>.');
+(3, '2016-12-21 14:20:14', '2016-12-21 14:20:14', 'Третий этаж');
 
 -- --------------------------------------------------------
 
@@ -74,8 +73,8 @@ CREATE TABLE IF NOT EXISTS `floor_ads` (
   `user_id` int(10) unsigned NOT NULL,
   `text` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `floor_ads_floor_id_foreign` (`floor_id`),
-  KEY `floor_ads_user_id_foreign` (`user_id`)
+  KEY `floor_ads_user_id_foreign` (`user_id`),
+  KEY `floor_id` (`floor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -148,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `places` int(11) NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `rooms_floor_id_foreign` (`floor_id`)
+  KEY `floor_id` (`floor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -179,7 +178,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `room_id` int(10) unsigned NOT NULL DEFAULT '0',
   `is_admin` tinyint(1) NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
@@ -188,9 +188,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `username`, `email`, `faculty`, `password`, `room_id`, `is_admin`, `remember_token`) VALUES
 (1, NULL, '2016-12-21 08:41:01', 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$fLj17YnvqlkW2sBZbsECLOi0vIHE45b0E19.fv.GQ97Xd6U8Cl9M2', 0, 1, '20jbyV0nZqXzIG34c5wakRdsd04k5zTfotydhAmHKFiPGBvMyIYUhe1SkMln'),
-(2, NULL, NULL, 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$cDF94RRKS0sa8v6xODxw..JzOFMVqxc0uyaQ6j87Qrvo2zF565Gz6', 0, 1, NULL),
-(3, '2016-12-21 09:08:36', '2016-12-21 09:08:36', 'Чурсина Татьяна Сергеевна', 'tetiana.chursina@nure.ua', 'КН', '$2y$10$gB777vyBBC3YicvkUjfcN.BPmV2PfjQD8ElWBD.hgBDAf.ndi6ioK', 0, 0, NULL),
-(4, '2016-12-21 09:14:03', '2016-12-21 09:14:03', 'Билецкий Владислав', 'vladyslav.biletskyi@nure.ua', 'КН', '$2y$10$Au4MFv2N7ZRrFX9paKtNseuYNxEtrQWqSd1HDTv.KE77t59JNDm/e', 0, 1, NULL);
+(3, '2016-12-21 09:08:36', '2016-12-21 09:08:36', 'Чурсина Татьяна Сергеевна', 'tetiana.chursina@nure.ua', 'КН', '$2y$10$gB777vyBBC3YicvkUjfcN.BPmV2PfjQD8ElWBD.hgBDAf.ndi6ioK', 1, 0, NULL),
+(4, '2016-12-21 09:14:03', '2016-12-21 11:24:23', 'Билецкий Владислав', 'vladyslav.biletskyi@nure.ua', 'КН', '$2y$10$Au4MFv2N7ZRrFX9paKtNseuYNxEtrQWqSd1HDTv.KE77t59JNDm/e', 0, 1, 'fPBPLRFIW5TXVEz6yfKz1RhKB66OhWsDS568yXtPwpBSAp1JCyKGT0FoIjSm');
 
 --
 -- Constraints for dumped tables
@@ -206,8 +205,8 @@ ALTER TABLE `comments`
 -- Constraints for table `floor_ads`
 --
 ALTER TABLE `floor_ads`
-  ADD CONSTRAINT `floor_ads_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `floor_ads_floor_id_foreign` FOREIGN KEY (`floor_id`) REFERENCES `floors` (`id`);
+  ADD CONSTRAINT `floor_ads_ibfk_1` FOREIGN KEY (`floor_id`) REFERENCES `floors` (`floor_id`),
+  ADD CONSTRAINT `floor_ads_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `global_ads`
@@ -219,7 +218,7 @@ ALTER TABLE `global_ads`
 -- Constraints for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_floor_id_foreign` FOREIGN KEY (`floor_id`) REFERENCES `floors` (`id`);
+  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`floor_id`) REFERENCES `floors` (`floor_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
