@@ -13,7 +13,10 @@
 
         <div class="collapse navbar-collapse" id="index-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Главная</a></li>
+                <li><a href="{{route('welcome')}}"><i class="fa fa-home" aria-hidden="true"></i> Главная</a></li>
+                @if(Auth::user())
+                    <li><a href="{{route('user')}}"><i class="fa fa-user" aria-hidden="true"></i> Профиль</a></li>
+                @endif
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-list" aria-hidden="true"></i>
                         Этажи<span class="caret"></span>
@@ -24,6 +27,7 @@
                         <li><a href="/floor/3">Этаж 3</a></li>
                     </ul>
                 </li>
+                <li><a href="#"><i class="fa fa-question" aria-hidden="true"></i> О проекте</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

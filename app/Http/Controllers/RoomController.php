@@ -23,9 +23,10 @@ use Illuminate\Support\Facades\File;
 
 class RoomController extends Controller
 {
-    public function getRoomIndex()
+    public function getRoom($id)
     {
-        return view('allviews/room.view', []);
+        $room = Room::where('id', $id);
+        return view('rooms.view', ['room' => $room]);
     }
 
     public function postAddRoom(Request $request)
