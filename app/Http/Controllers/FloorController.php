@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Floor;
+use App\Room;
 use Illuminate\Http\Request;
 //storage for files
 use Illuminate\Support\Facades\Storage;
@@ -11,9 +12,11 @@ use Illuminate\Support\Facades\File;
 
 class FloorController extends Controller
 {
-    public function getFloor($id)
+    public function getFloor($floor_id)
     {
-        return view('');
+        $floor_id = intval($floor_id);
+        $floor = Floor::where('floor_id', '=', $floor_id)->first();
+        return view('floors.view', ['floor' => $floor]);
     }
 
     public function postAddFloor(Request $request)

@@ -65,3 +65,13 @@ Route::post('/add_room', [
     'as' => 'add_room',
     'middleware' => 'auth'
 ]);
+Route::get('/floor/{floor_id}', [
+    'uses' => 'FloorController@getFloor',
+    'as' => 'floors.view',
+    'middleware' => 'auth'
+]);
+Route::get('/room/{id}', [
+    'uses' => 'RoomController@getRoom',
+    'as' => 'rooms.view',
+    'middleware' => 'auth'
+]);
