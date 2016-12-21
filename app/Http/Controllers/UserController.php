@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Mail;
 //the model
 use App\User;
+use App\Floor;
 //namespace to deal with requests
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -39,7 +40,7 @@ class UserController extends Controller
             'username' => 'required',
             'email' => 'required|email|unique:users',
             'faculty' => 'required',
-            'scan' => 'required'
+            'scan' => 'file|required'
         ]);
 
         $scan = $request->file('scan');
@@ -86,7 +87,9 @@ class UserController extends Controller
         // if admin
         if(Auth::user()->is_admin == 1)
         {
-            return view('moderator.index', ['user' =>Auth::user()]);
+            $users = User::where('is_admin', 0)->get();
+            $floors = Floor::all();
+            return view('moderator.index', ['user' =>Auth::user(), 'students' => $users, 'floors' => $floors]);
         }
         //if ordinary user
         return view('user.index', ['user' =>Auth::user()]);

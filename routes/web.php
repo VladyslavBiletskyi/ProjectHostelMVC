@@ -55,3 +55,8 @@ Route::get('/logout', [
     'uses' => 'UserController@getLogout',
     'as' => 'logout'
 ]);
+Route::post('/add_floor', [
+    'uses' => 'FloorController@postAddFloor',
+    'as' => 'add_floor',
+    'middleware' => 'auth'
+]);

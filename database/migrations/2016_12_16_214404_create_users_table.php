@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string("username", 255);
-            $table->string("email", 255);
+            $table->string("email", 255)->unique();
             $table->string("faculty", 255)->nullable();
             $table->string("password", 255);
             $table->unsignedInteger("room_id")->default(0);

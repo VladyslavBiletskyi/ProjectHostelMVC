@@ -20,7 +20,7 @@ class CreateFloorAdsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->text('text');
 
-            $table->foreign('floor_id')->references('id')->on('floors');
+            $table->foreign('floor_id')->references('floor_id')->on('floors');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

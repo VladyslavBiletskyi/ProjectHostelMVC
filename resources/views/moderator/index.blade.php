@@ -25,46 +25,20 @@
                     <h3>Пользователи</h3>
                     <div class="col col-sm-12 col-md-6 studentList">
                         <ul class="list-group">
-                            <li class="list-group-item">
-                                <span class="badge">Не поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Не поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Не поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Не поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Не поселен</span>
-                                Какой-то чувак
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge">Поселен</span>
-                                Какой-то чувак
-                            </li>
+                            @foreach($students as $student)
+                                @if($student->is_admin == 0)
+                                    <li class="list-group-item">
+                                        <span class="badge">
+                                            @if($student->room_id == 0)
+                                                Не поселен
+                                            @else
+                                                Этаж {{$student->room->floor_id }}, Комната {{ $student->room_id }}
+                                            @endif
+                                        </span>
+                                        {{ $student->username }}
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-sm-12 col-md-4 col-md-offset-1 text-center">
@@ -101,26 +75,41 @@
                 <div id="menuFloor" class="tab-pane fade">
                     <h3>Этажи</h3>
                     <div class="col col-sm-12 col-md-6 studentList">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                <h4 class="list-group-item-heading">Этаж №1</h4>
-                                <p class="list-group-item-text">Количество комнат:15</p>
-                            </a>
-                        </div>
+                        @foreach($floors as $floor)
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">
+                                    <h4 class="list-group-item-heading">Этаж №{{$floor->floor_id}}</h4>
+                                    <p class="list-group-item-text">Описание: {{$floor->description}}</p>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="col col-sm-12 col-md-6">
-                        <form enctype="multipart/form-data" class="text-center">
+                        <form enctype="multipart/form-data" class="text-center" method="post" action="{{route('add_floor')}}">
                             <div class="input-group inputs">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                <input type="text" class="form-control" placeholder="Название">
+                                <select class="form-control" name="floor_id" required>
+                                    <option disabled>Номер этажа</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
                             </div>
-                            <div class="input-group inputs">
-                                <span class="input-group-addon">№</span>
-                                <input type="text" class="form-control" placeholder="Количество комнат">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="file" class="filestyle form-control" accept="image/jpeg,image/png"
+                                           data-buttonText="Фото" name="photo" data-buttonBefore="true" required>
+                                </div>
                             </div>
-                            <textarea class="form-control" placeholder="Описание">
-
-                            </textarea>
+                            <br/>
+                            <textarea class="form-control" name="description" required rows="2" placeholder="Описание"></textarea>
+                            <input type="hidden" name="_token" value="{{ Session::token() }}"/>
                             <br/>
                             <button type="submit" class="btn btn-success">Добавить этаж</button>
                         </form>

@@ -20,7 +20,7 @@ class CreateRoomsTable extends Migration
             $table->integer('places');
             $table->text('description');
 
-            $table->foreign('floor_id')->references('id')->on('floors');
+            $table->foreign('floor_id')->references('floor_id')->on('floors');
         });
     }
 
