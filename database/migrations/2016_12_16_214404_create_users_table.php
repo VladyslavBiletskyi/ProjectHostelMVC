@@ -20,9 +20,11 @@ class CreateUsersTable extends Migration
             $table->string("email", 255);
             $table->string("faculty", 255)->nullable();
             $table->string("password", 255);
-            $table->integer("room")->nullable();
+            $table->unsignedInteger("room_id")->default(0);
             $table->boolean("is_admin");
             $table->rememberToken();
+
+            $table->foreign("room_id")->references('id')->on('rooms');
         });
     }
 

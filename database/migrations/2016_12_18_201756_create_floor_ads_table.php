@@ -16,9 +16,12 @@ class CreateFloorAdsTable extends Migration
         Schema::create('floor_ads', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('floor_id');
-            $table->integer('user_id');
+            $table->unsignedInteger('floor_id');
+            $table->unsignedInteger('user_id');
             $table->text('text');
+
+            $table->foreign('floor_id')->references('id')->on('floors');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

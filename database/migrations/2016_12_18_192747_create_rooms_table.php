@@ -16,9 +16,11 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('floor_id');
+            $table->unsignedInteger('floor_id');
             $table->integer('places');
             $table->text('description');
+
+            $table->foreign('floor_id')->references('id')->on('floors');
         });
     }
 
