@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->boolean("is_admin");
             $table->rememberToken();
 
-            $table->foreign("room_id")->references('id')->on('rooms');
+            //$table->foreign("room_id")->references('id')->on('rooms');
         });
     }
 
