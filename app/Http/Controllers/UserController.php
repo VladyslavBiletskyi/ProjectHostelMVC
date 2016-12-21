@@ -6,6 +6,7 @@ use Mail;
 //the model
 use App\User;
 use App\Floor;
+use App\Room;
 //namespace to deal with requests
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -89,7 +90,9 @@ class UserController extends Controller
         {
             $users = User::where('is_admin', 0)->get();
             $floors = Floor::all();
-            return view('moderator.index', ['user' =>Auth::user(), 'students' => $users, 'floors' => $floors]);
+            $rooms = Room::all();
+            return view('moderator.index', ['user' =>Auth::user(), 'students' => $users,
+                'floors' => $floors, 'rooms' => $rooms]);
         }
         //if ordinary user
         return view('user.index', ['user' =>Auth::user()]);

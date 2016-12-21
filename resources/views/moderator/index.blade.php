@@ -118,37 +118,54 @@
                 
                 <div id="menuRoom" class="tab-pane fade">
                     <h3>Комнаты</h3>
-                    <div class="col col-sm-12 col-md-6 studentList">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                <h4 class="list-group-item-heading">Комната №1</h4>
-                                <p class="list-group-item-text">Количество мест:4, Жильцов:3</p>
-                            </a>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            @foreach($floors as $floor)
+                                @foreach($rooms as $room)
+                                    @if($room->floor_id == $floor->floor_id)
+                                        <div class="studentList">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item active">
+                                                    <h4 class="list-group-item-heading">Комната №{{$room->id}}</h4>
+                                                    <p class="list-group-item-text">Этаж: {{$room->floor_id}}, Количество мест: {{$room->places}}</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <hr/>
+                            @endforeach
                         </div>
-                    </div>
-                    <div class="col col-sm-12 col-md-6">
-                        <form enctype="multipart/form-data" class="text-center">
-                            <div class="input-group inputs">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                <input type="text" class="form-control" placeholder="Название">
-                            </div>
-                            <div class="input-group inputs">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Количество мест">
-                            </div>
-                            <select class="form-control">
-                                <option disabled selected>Этаж</option>
-                                <option value="1">1 этаж</option>
-                                <option value="2">2 этаж</option>
-                                <option value="3">3 этаж</option>
-                            </select>
-                            <br/>
-                            <textarea class="form-control" placeholder="Описание">
-
-                            </textarea>
-                            <br/>
-                            <button type="submit" class="btn btn-success">Добавить комнату</button>
-                        </form>
+                        <div class="col col-sm-12 col-md-6">
+                            <form enctype="multipart/form-data" class="text-center" method="post" action="{{route('add_room')}}">
+                                <div class="input-group inputs">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" class="form-control" name="id" placeholder="Номер">
+                                </div>
+                                <div class="input-group inputs">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" name="places" placeholder="Количество мест">
+                                </div>
+                                <select class="form-control" name="floor_id">
+                                    <option disabled selected>Этаж</option>
+                                    @foreach($floors as $floor)
+                                        <option value="{{$floor->floor_id}}">{{$floor->floor_id}} этаж</option>
+                                    @endforeach
+                                </select>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="file" class="filestyle form-control" accept="image/jpeg,image/png"
+                                               data-buttonText="Фото" name="photo" data-buttonBefore="true" required>
+                                    </div>
+                                </div>
+                                <br/>
+                                <textarea name="description" class="form-control" rows="2" placeholder="Описание"></textarea>
+                                <input type="hidden" name="_token" value="{{ Session::token() }}"/>
+                                <br/>
+                                <button type="submit" class="btn btn-success">Добавить комнату</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -60,3 +60,8 @@ Route::post('/add_floor', [
     'as' => 'add_floor',
     'middleware' => 'auth'
 ]);
+Route::post('/add_room', [
+    'uses' => 'RoomController@postAddRoom',
+    'as' => 'add_room',
+    'middleware' => 'auth'
+]);
