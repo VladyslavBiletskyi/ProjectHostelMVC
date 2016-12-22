@@ -27,7 +27,7 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="#"><i class="fa fa-question" aria-hidden="true"></i> О проекте</a></li>
+                <li><a href="about"><i class="fa fa-question" aria-hidden="true"></i> О проекте</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

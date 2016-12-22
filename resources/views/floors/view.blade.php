@@ -36,7 +36,7 @@
             <div class="col col-xs-12 col-md-6">
                 <h3>Комнаты</h3>
 
-                <div class="board roomList">
+                <div class="board thumbnailBoard roomList">
                     <ul class="list-group text-center ">
                         @foreach($rooms as $room)
                             <a href="{{route('rooms.view', $room->id)}}">

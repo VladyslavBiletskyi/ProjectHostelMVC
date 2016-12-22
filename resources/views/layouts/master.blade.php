@@ -17,7 +17,7 @@
 @yield('content')
 
 
-<div class="container">
+<div class="container footer ">
     <p class="text-muted">&copy; NURE 2016</p>
 </div>
 </body>

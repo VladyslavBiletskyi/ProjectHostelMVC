@@ -6,11 +6,17 @@
 
 @section('content')
    <div class="container">
+      <div class="page-header">
+         <h1>Добро пожаловать, Пользователь!</h1>
+         <ul class="pager">
+            <li class="previous"><a href="/"><i class="glyphicon glyphicon-arrow-left"></i> На главную</a></li>
+         </ul>
+      </div>
       <div class="row about">
          <div class="col col-xs-12 col-md-4">
             <div class="thumbnail description">
                <div class="caption">
-                  <h2>Добро пожаловать, Пользователь!</h2>
+                  <h2>Данные профиля</h2>
                   <p class="description">
                      ФИО: {{Auth::user()->username}}
                      <br/>
