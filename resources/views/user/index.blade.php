@@ -18,7 +18,9 @@
                      <br/>
                      Факультет: {{Auth::user()->faculty}}
                      <br/>
-                     Бронь: {{Auth::user()->room_id}} <a href="#">Снять бронь</a>
+                     @if(Auth::user()->room_id != 0)
+                        Бронь: {{Auth::user()->room_id}} <a href="{{route('cancel_booking', Auth::user()->room_id)}}">Снять бронь</a>
+                     @endif
                   </p>
                   <br>
                   <!--<a href="#" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary btn-lg">Редактировать</a>-->
