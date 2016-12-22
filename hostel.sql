@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2016 at 08:12 PM
+-- Generation Time: Dec 22, 2016 at 01:47 PM
 -- Server version: 5.5.53-0ubuntu0.14.04.1
 -- PHP Version: 5.6.23-1+deprecated+dontuse+deb.sury.org~trusty+1
 
@@ -32,9 +32,19 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `text` text COLLATE utf8_unicode_ci NOT NULL,
+  `room_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `comments_user_id_foreign` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `created_at`, `updated_at`, `user_id`, `text`, `room_id`) VALUES
+(1, '2016-12-22 04:25:22', '2016-12-22 04:25:22', 3, 'Новый тестовый комментарий', 2),
+(2, '2016-12-22 05:13:06', '2016-12-22 05:13:06', 1, 'а вот и админский коммент))', 2),
+(3, '2016-12-22 08:22:40', '2016-12-22 08:22:40', 4, 'cvbfxcbvgnvb', 323);
 
 -- --------------------------------------------------------
 
@@ -155,11 +165,12 @@ CREATE TABLE IF NOT EXISTS `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `created_at`, `updated_at`, `floor_id`, `places`, `description`) VALUES
-(1, NULL, NULL, 2, 3, 'Угловая комната на втором этаже. Рядом - туалет, комната №2. Кухня близко, умывальник - напротив.'),
+(1, NULL, NULL, 2, 3, 'Прекрасная комната для жизни и смерти! Только самые свежие и хрустящие тараканы специально для вас! Есть даже горячая вода с 3:30 до 4:00 каждый день! У вас есть уникальная возможность засыпать под умиротворяющее пение ветра в оконных щелях и созерцать прекрасный вид на свалку под окном. Каждому жильцу предоставляется персональный санузел класса Ведро-М1, а также безлимитный абонемент на национализацию чужой еды из общественного холодильника. Удобные комфортные кровати с панцирной сеткой всегда готовы подарить вам прекрасный отдых на целую ночь и для многих являются ложем мечты(парни с подкатанными джинсами спят в углу возле санузлов). Отделка стен выполнена в новейшем стиле "газет-престиж" теперь жильцам не понадобится придумывать новые теориии квантовой механики перед сном. Статьи на стенах закончатся нескоро. Комната находится в уютном панельном крупнощелевом здании и подарит жильцам массу положительных эмоций в зимнее время года. Новогодняя атмосфера будет заметна сразу же после выхода из-под одеяла. Возле окна предусмотрено специальное средство для озонирования воздуха, на которое жильцы смогут ставить свои носки. Поселяйтесь в общежитие "Одуванчик"! Общежитие "Одуванчик" - "Не дай Бог, приснится". '),
 (2, NULL, NULL, 2, 3, 'Комната на втором этаже. Рядом - туалет, комнаты №1 и 3. Кухня близко, умывальник - напротив.'),
 (3, NULL, NULL, 2, 3, 'Описание надо отредактировать'),
 (4, NULL, NULL, 3, 3, 'Описание надо отредактировать'),
 (9, NULL, NULL, 2, 3, 'Угловая комната на втором этаже. Рядом - умывальник, комната №10. Кухня близко, туалет- напротив. Также поблизости кастелянша, вахтер и камера хранения.'),
+(41, '2016-12-22 05:17:56', '2016-12-22 05:17:56', 3, 2, 'тест'),
 (323, '2016-12-21 16:10:38', '2016-12-21 16:10:38', 3, 4, 'Новая комната');
 
 -- --------------------------------------------------------
@@ -181,16 +192,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `created_at`, `updated_at`, `username`, `email`, `faculty`, `password`, `room_id`, `is_admin`, `remember_token`) VALUES
-(1, NULL, '2016-12-21 08:41:01', 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$fLj17YnvqlkW2sBZbsECLOi0vIHE45b0E19.fv.GQ97Xd6U8Cl9M2', 0, 1, '20jbyV0nZqXzIG34c5wakRdsd04k5zTfotydhAmHKFiPGBvMyIYUhe1SkMln'),
-(3, '2016-12-21 09:08:36', '2016-12-21 09:08:36', 'Чурсина Татьяна Сергеевна', 'tetiana.chursina@nure.ua', 'КН', '$2y$10$gB777vyBBC3YicvkUjfcN.BPmV2PfjQD8ElWBD.hgBDAf.ndi6ioK', 1, 0, NULL),
-(4, '2016-12-21 09:14:03', '2016-12-21 11:24:23', 'Билецкий Владислав', 'vladyslav.biletskyi@nure.ua', 'КН', '$2y$10$Au4MFv2N7ZRrFX9paKtNseuYNxEtrQWqSd1HDTv.KE77t59JNDm/e', 0, 1, 'fPBPLRFIW5TXVEz6yfKz1RhKB66OhWsDS568yXtPwpBSAp1JCyKGT0FoIjSm');
+(1, NULL, '2016-12-22 09:43:41', 'Админ Админович', 'hostel.moderator@gmail.com', NULL, '$2y$10$fLj17YnvqlkW2sBZbsECLOi0vIHE45b0E19.fv.GQ97Xd6U8Cl9M2', 0, 1, 'NDjJAprtaQwxWWaacKU6eI9kwAmVVpCswQuK9gTSICA6zWEmTN1fvRtGbHGc'),
+(3, '2016-12-21 09:08:36', '2016-12-22 09:43:16', 'Чурсина Татьяна Сергеевна', 'tetiana.chursina@nure.ua', 'КН', '$2y$10$gB777vyBBC3YicvkUjfcN.BPmV2PfjQD8ElWBD.hgBDAf.ndi6ioK', 0, 0, 'ZPA4YMvSkaGu91fqtGNzbqfEGtk24yuSn2SDQc6RvvVocyjqC5LRL86AAFkb'),
+(4, '2016-12-21 09:14:03', '2016-12-22 08:31:00', 'Билецкий Владислав', 'vladyslav.biletskyi@nure.ua', 'КН', '$2y$10$Au4MFv2N7ZRrFX9paKtNseuYNxEtrQWqSd1HDTv.KE77t59JNDm/e', 2, 1, 'gqQ8HS6sZXL2rpdCVAtu5D8JmaHse5a17OjYtVjbK6F8W25GK90fZcPtHIb9'),
+(5, '2016-12-22 09:20:05', '2016-12-22 09:44:33', 'Кравец Михаил Владиславович', 'mykhailo.kravets@nure.ua', 'КН', '$2y$10$ZOHTM0FspxSjm7JtkV68uuVTstNWZpU6LWngpSMQAxtzzsm6YuRBK', 323, 0, 'eytk9ovbDHkFdNX6Dbw9Z6LCEidCy5sq71jDIS9jxd8xot9KTrYdjV1NMfI8');
 
 --
 -- Constraints for dumped tables
