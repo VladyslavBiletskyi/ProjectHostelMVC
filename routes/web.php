@@ -99,14 +99,20 @@ Route::post('/edit_comment', [
     'as' => 'edit_comment'
 ]);
 
-Route::get('/book{id}', [
+Route::get('/book/{id}', [
     'uses' => 'RoomController@getBookRoom',
     'as' => 'book',
     'middleware' => 'auth'
 ]);
 
-Route::get('/cancel_booking{id}', [
+Route::get('/cancel_booking/{id}', [
     'uses' => 'RoomController@getCancelBooking',
     'as' => 'cancel_booking',
+    'middleware' => 'auth'
+]);
+
+Route::get('/refuse_booking/{id}', [
+    'uses' => 'RoomController@getRefuseBooking',
+    'as' => 'refuse_booking',
     'middleware' => 'auth'
 ]);

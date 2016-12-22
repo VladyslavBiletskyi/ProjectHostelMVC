@@ -26,7 +26,8 @@ p.description{
     color: white;
 }
 div.description{
-    height: auto;
+    min-height: 250px;
+    overflow-y: auto;
     background: url("../images/background.jpg");
     text-align: center;
     margin-top: 20px;
@@ -106,4 +107,10 @@ form span{
 .places{
     color: white;
     text-decoration: underline;
+}
+
+img{
+    width: 800px !important;
+    height: 400px !important;
+
 }

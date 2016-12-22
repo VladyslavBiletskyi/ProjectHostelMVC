@@ -47,4 +47,5 @@ class FloorController extends Controller
         $file = Storage::disk('local')->get('/floor/'.$filename);
         return new Response($file, 200);
     }
+
 }

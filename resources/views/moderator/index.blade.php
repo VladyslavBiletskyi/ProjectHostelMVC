@@ -35,6 +35,9 @@
                                                 Этаж {{$student->room->floor_id }}, Комната {{ $student->room_id }}
                                             @endif
                                         </span>
+                                        <a href="{{route('refuse_booking', $student->id)}}"><span class="badge">
+                                            Снять бронь
+                                        </span></a>
                                         {{ $student->username }}
                                     </li>
                                 @endif

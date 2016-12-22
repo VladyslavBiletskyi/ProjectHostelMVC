@@ -41,7 +41,7 @@
                         @foreach($rooms as $room)
                             <a href="{{route('rooms.view', $room->id)}}">
                                 <li class="list-group-item room">
-                                    <span class="badge">{{$room->places}}</span>
+                                    <span class="badge">Всего мест: {{$room->places}}</span>
                                         Комната № {{$room->id}}
                                 </li>
                             </a>

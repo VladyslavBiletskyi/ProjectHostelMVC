@@ -90,4 +90,18 @@ class RoomController extends Controller
         }
         return redirect('/room/'.$id)->with(['errormessage' => $errormessage]);
     }
+
+
+    public function getRefuseBooking($id)
+    {
+        if(Auth::user()->is_admin != 1)
+        {
+            return redirect('/user');
+        }
+        $user = User::find($id);
+        $user->room_id  = 0;
+        $user->update();
+        $message = "В брони успешно отказано.";
+        return redirect('/user')->with(['message' => $message]);
+    }
 }
