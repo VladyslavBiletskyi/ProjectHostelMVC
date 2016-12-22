@@ -44,12 +44,7 @@ class FloorController extends Controller
 
     public function getFloorImage($filename)
     {
-        $path = storage_path().'/floor/' . $filename;
-        if (file_exists($path)) {
-            //header("Content-Type", 'img/jpeg');
-            $response = new Response($path, 200);
-            $response->header('Content-Type', mime_content_type($path));
-            return $response;
-        }
+        $file = Storage::disk('local')->get('/floor/'.$filename);
+        return new Response($file, 200);
     }
 }

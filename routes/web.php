@@ -80,6 +80,10 @@ Route::get('/floor_image/{filename}', [
     'uses' => 'FloorController@getFloorImage',
     'as'  => 'floor_image'
 ]);
+Route::get('/room_image/{filename}', [
+    'uses' => 'RoomController@getRoomImage',
+    'as'  => 'room_image'
+]);
 Route::post('/add_comment', [
     'uses' => 'CommentController@postAddComment',
     'as' => 'add.comment',
@@ -88,5 +92,21 @@ Route::post('/add_comment', [
 Route::get('/delete_comment{id}', [
     'uses' => 'CommentController@postAddComment',
     'as' => 'comment.delete',
+    'middleware' => 'auth'
+]);
+Route::post('/edit_comment', [
+    'uses' => 'CommentController@postEditComment',
+    'as' => 'edit_comment'
+]);
+
+Route::get('/book{id}', [
+    'uses' => 'RoomController@getBookRoom',
+    'as' => 'book',
+    'middleware' => 'auth'
+]);
+
+Route::get('/cancel_booking{id}', [
+    'uses' => 'RoomController@getCancelBooking',
+    'as' => 'cancel_booking',
     'middleware' => 'auth'
 ]);

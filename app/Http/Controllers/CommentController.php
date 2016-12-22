@@ -28,4 +28,20 @@ class CommentController extends Controller
         }
         return redirect('/room/'.$request['room_id'])->with(['message' => $message]);
     }
+
+    public function postEditComment(Request $request)
+    {
+        $this->validate($request, [
+            'text' => 'required'
+        ]);
+
+        $comment = Comment::find($request['postId']);
+        if(Auth::user() != $comment->user || Auth::user()->is_admin != 1){
+            return redirect()->back();
+        }
+
+        $comment->text = $request['text'];
+        $comment->update();
+        return response()->json(['new_body' => $comment->text ], 200);
+    }
 }

@@ -17,6 +17,8 @@
                      Логин: {{Auth::user()->email}}
                      <br/>
                      Факультет: {{Auth::user()->faculty}}
+                     <br/>
+                     Бронь: {{Auth::user()->room_id}} <a href="#">Снять бронь</a>
                   </p>
                   <br>
                   <!--<a href="#" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary btn-lg">Редактировать</a>-->

@@ -102,3 +102,8 @@ form span{
     color: #aaa;
     font-style: italic;
 }
+
+.places{
+    color: white;
+    text-decoration: underline;
+}

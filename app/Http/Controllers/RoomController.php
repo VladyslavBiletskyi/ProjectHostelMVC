@@ -29,7 +29,8 @@ class RoomController extends Controller
         $room = Room::find($id);
         $students = User::where('room_id', '=', $id)->get();
         $comments = Comment::where('room_id', '=', $id)->orderBy('created_at', 'desc')->get();
-        return view('rooms.view', ['room' => $room, 'students' => $students, 'comments' => $comments]);
+        $free  = $room->places - $students->count();
+        return view('rooms.view', ['room' => $room, 'students' => $students, 'comments' => $comments, 'free' => $free]);
     }
 
     public function postAddRoom(Request $request)
@@ -60,12 +61,33 @@ class RoomController extends Controller
 
     public function getRoomImage($filename)
     {
-        $path = storage_path().'/floor/' . $filename;
-        if (file_exists($path)) {
-            //header("Content-Type", 'img/jpeg');
-            $response = Response::make($path, 200);
-            $response->header('Content-Type', mime_content_type($path));
-            return $response;
+        $file = Storage::disk('local')->get('/room/'.$filename);
+        return new Response($file, 200);
+    }
+
+    public function getBookRoom($id)
+    {
+        $room = Room::find($id);
+        //$user = User::find(Auth::user()->id);
+        Auth::user()->room_id = $room->id;
+        $errormessage = "Ошибка бронирования.";
+        if(Auth::user()->update())
+        {
+            $message = "Комната успешно забронирована.";
+            return redirect('/room/'.$id)->with(['message' => $message]);
         }
+        return redirect('/room/'.$id)->with(['errormessage' => $errormessage]);
+    }
+
+    public function getCancelBooking($id)
+    {
+        Auth::user()->room_id = 0;
+        $errormessage = "Ошибка снятия брони.";
+        if(Auth::user()->update())
+        {
+            $message = "Бронь успешно снята.";
+            return redirect('/room/'.$id)->with(['message' => $message]);
+        }
+        return redirect('/room/'.$id)->with(['errormessage' => $errormessage]);
     }
 }

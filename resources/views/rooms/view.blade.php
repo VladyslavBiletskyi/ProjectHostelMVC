@@ -13,9 +13,14 @@
             <li class="previous"><a href="{{route('floors.view', $room->floor_id)}}"><i class="glyphicon glyphicon-arrow-left"></i> Назад к этажу</a></li>
         </ul>
     </div>
+    @include('includes.message')
     <div class="row">
         <div class="col col-sm-12 col-md-8 col-md-offset-2">
-            <img src="" />
+            @if (Storage::disk('local')->has('room/'.$room->id.'.jpg'))
+                <div class="col-md-6 col-md-offset-3" align="center">
+                    <img src="{{ route('room_image', ['filename' => $room->id.'.jpg'])}}" alt="" class="img-responsive">
+                </div>
+            @endif
         </div>
     </div>
     <div class="row">
@@ -27,7 +32,22 @@
                         {{$room->description}}
                     </p>
                     <br>
-                    <a href="#" class="btn btn-primary btn-lg">Забронировать</a>
+                    <div class="row places">
+                        <div class="col-sm-4">
+                            Всего мест: {{$room->places}}
+                        </div>
+                        <div class="col-sm-4">
+                            Свободно: {{$free}}
+                        </div>
+                        <div class="col-sm-4">
+                            @if($free > 0 && Auth::user()->room_id == 0)
+                                <a href="{{route('book', $room->id)}}" class="btn btn-primary">Забронировать</a>
+                            @elseif(Auth::user()->room_id == $room->id)
+                                <a href="{{route('cancel_booking', $room->id)}}" class="btn btn-primary">Снять бронь</a>
+                            @endif
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -76,6 +96,33 @@
                 @endforeach
             </div>
         </section>
+        <div class="modal fade" tabindex="-1" role="dialog" id="edit-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Редактировать</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="post-body">Редактировать комментарий</label>
+                                <textarea class="form-control" id="post-body" name="post-body" rows="5"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary" id="modal-save">Сохранить</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <script>
+            var token = '{{ Session::token() }}';
+            var url = '{{ route('edit_comment') }}';
+        </script>
     </div>
 </div>
 @endsection

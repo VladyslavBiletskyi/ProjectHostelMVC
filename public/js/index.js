@@ -6,7 +6,7 @@ $(document).ready(function(){
     $('.open-edit').click(function(e){
         e.preventDefault();
 
-        postBodyElement = e.target.parentNode.parentNode.childNodes[1];
+        postBodyElement = e.target.parentNode.childNodes[1];
         var postBody = postBodyElement.textContent;
         postId = e.target.parentNode.parentNode.dataset['postid'];
         $('#post-body').val(postBody);
