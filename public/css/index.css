@@ -63,9 +63,9 @@ div.description{
 form span{
     min-width: 40px;
 }
-.roomMemberItem{
+/*.roomMemberItem{
     cursor: pointer;
-}
+}*/
 .nav-tabs li a{
     font-weight: bold;
 }
@@ -74,4 +74,31 @@ form span{
     overflow: auto;
     max-height: 330px;
     margin-top: 20px;
+}
+
+
+.interaction{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.new-post{
+    padding: 16px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.new-post header,
+.posts header{
+    margin-bottom: 20px;
+}
+
+.post{
+    padding: 10px;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 3px;
+}
+.posts .post .info{
+    color: #aaa;
+    font-style: italic;
 }

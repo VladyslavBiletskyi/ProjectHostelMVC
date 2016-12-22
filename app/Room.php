@@ -18,4 +18,10 @@ class Room extends Model
         return $this->belongsTo('App\Floor');
     }
 
+    public function comments()
+    {
+        //relation 1:M
+        return $this->hasMany('App\Comment');
+    }
+
 }

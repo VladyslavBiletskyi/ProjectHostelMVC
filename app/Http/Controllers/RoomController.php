@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 //the model
 use App\User;
 use App\Room;
+use App\Comment;
 //namespace to deal with requests
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -25,8 +26,10 @@ class RoomController extends Controller
 {
     public function getRoom($id)
     {
-        $room = Room::where('id', $id);
-        return view('rooms.view', ['room' => $room]);
+        $room = Room::find($id);
+        $students = User::where('room_id', '=', $id)->get();
+        $comments = Comment::where('room_id', '=', $id)->orderBy('created_at', 'desc')->get();
+        return view('rooms.view', ['room' => $room, 'students' => $students, 'comments' => $comments]);
     }
 
     public function postAddRoom(Request $request)
@@ -53,5 +56,16 @@ class RoomController extends Controller
         $room->save();
         $message = "Комната успешно добавлена.";
         return redirect('/user')->with(['message' => $message]);
+    }
+
+    public function getRoomImage($filename)
+    {
+        $path = storage_path().'/floor/' . $filename;
+        if (file_exists($path)) {
+            //header("Content-Type", 'img/jpeg');
+            $response = Response::make($path, 200);
+            $response->header('Content-Type', mime_content_type($path));
+            return $response;
+        }
     }
 }

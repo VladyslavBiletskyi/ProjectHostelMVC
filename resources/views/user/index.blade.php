@@ -12,14 +12,14 @@
                <div class="caption">
                   <h2>Добро пожаловать, Пользователь!</h2>
                   <p class="description">
-                     ФИО:
+                     ФИО: {{Auth::user()->username}}
                      <br/>
-                     Логин:
+                     Логин: {{Auth::user()->email}}
                      <br/>
-                     Комната:
+                     Факультет: {{Auth::user()->faculty}}
                   </p>
                   <br>
-                  <a href="#" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary btn-lg">Редактировать</a>
+                  <!--<a href="#" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary btn-lg">Редактировать</a>-->
                </div>
             </div>
          </div>

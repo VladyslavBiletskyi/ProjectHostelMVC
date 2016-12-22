@@ -1,43 +1,21 @@
 @extends('layouts.master')
 
 @section('title')
-Комната
+Комната №{{$room->id}}
 @endsection
 
 @section('content')
 
 <div class="container">
+    <div class="page-header">
+        <h1>Комната {{$room->id}}, этаж {{$room->floor_id}}</h1>
+        <ul class="pager">
+            <li class="previous"><a href="{{route('floors.view', $room->floor_id)}}"><i class="glyphicon glyphicon-arrow-left"></i> Назад к этажу</a></li>
+        </ul>
+    </div>
     <div class="row">
         <div class="col col-sm-12 col-md-8 col-md-offset-2">
-            <div id="carousel-room" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-room" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-room" data-slide-to="1"></li>
-                    <li data-target="#carousel-room" data-slide-to="2"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="http://www.fullmoonhostel.com/photo/4.jpg" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="https://i.szalas.hu/hotels/480351/original/8704887.jpg" alt="">
-                    </div>
-                    <div class="item">
-                        <img src="https://i.szalas.hu/hotels/480351/original/8704857.jpg" alt="">
-                    </div>
-                </div>
-
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-room" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-room" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </div>
+            <img src="" />
         </div>
     </div>
     <div class="row">
@@ -46,28 +24,7 @@
                 <div class="caption">
                     <h2>Описание</h2>
                     <p class="description">
-                        Прекрасная комната для жизни и смерти! Только самые свежие
-                        и хрустящие тараканы специально для вас!
-                        Есть даже горячая вода с 3:30 до 4:00 каждый день!
-                        У вас есть уникальная возможность засыпать под умиротворяющее
-                        пение ветра в оконных щелях и созерцать прекрасный вид на свалку под окном.
-                        Каждому жильцу предоставляется персональный санузел класса Ведро-М1,
-                        а также безлимитный абонемент на национализацию чужой еды
-                        из общественного холодильника.
-                        Удобные комфортные кровати с панцирной сеткой всегда готовы
-                        подарить вам прекрасный отдых на целую ночь и для многих
-                        являются ложем мечты(парни с подкатанными джинсами
-                        спят в углу возле санузлов).
-                        Отделка стен выполнена в новейшем стиле "газет-престиж"
-                        теперь жильцам не понадобится придумывать новые теориии квантовой
-                        механики перед сном. Статьи на стенах закончатся нескоро.
-                        Комната находится в уютном панельном крупнощелевом здании и подарит
-                        жильцам массу положительных эмоций в зимнее время года. Новогодняя
-                        атмосфера будет заметна сразу же после выхода из-под одеяла.
-                        Возле окна предусмотрено специальное средство для озонирования
-                        воздуха, на которое жильцы смогут ставить свои носки.
-                        Поселяйтесь в общежитие "Одуванчик"!
-                        Общежитие "Одуванчик" - "Не дай Бог, приснится".
+                        {{$room->description}}
                     </p>
                     <br>
                     <a href="#" class="btn btn-primary btn-lg">Забронировать</a>
@@ -80,17 +37,45 @@
                     <h2>Список жильцов</h2>
                     <p class="description">
                         <ul class="list-group">
-                            <li class="list-group-item"><a class="roomMemberItem" href="#">Михалыч</a></li>
-                            <li class="list-group-item"><a class="roomMemberItem" href="#">Петрович</a></li>
-                            <li class="list-group-item"><a class="roomMemberItem" href="#">Семёныч</a></li>
-                            <li class="list-group-item"><a class="roomMemberItem" href="#">Романыч</a></li>
-                            <li class="list-group-item"><a class="roomMemberItem" href="#">Лобаныч</a></li>
+                            @foreach($students as $student)
+                                <li class="list-group-item roomMemberItem">{{$student->username}}</li>
+                            @endforeach
                         </ul>
                     </p>
                     <br>
                 </div>
             </div>
         </div>
+        <hr/>
+        <section class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <header><h3>Комментарии...</h3></header>
+                <form action="{{route('add.comment')}}" method="post">
+                    <div class="form-group">
+                        <textarea class="form-control" name="text" cols="30" rows="5" placeholder="Ваш комментарий..."></textarea>
+                    </div>
+                    <input type="hidden" value="{{ Session::token() }}" name="_token"/>
+                    <input type="hidden" value="{{$room->id}}" name="room_id"/>
+                    <button type="submit" class="btn btn-primary">Добавить комментарий</button>
+                </form>
+                <hr>
+                @foreach($comments as $comment)
+                    <div class="post" data-postid="{{ $comment->id }}">
+                        <p>{{ $comment->text }}</p>
+                        <div class="info">
+                            <i>Оставил(а) {{ $comment->user->username }}  {{ $comment->created_at }}</i>
+                        </div>
+                        <div class="interaction">
+                            @if(Auth::user() == $comment->user || Auth::user()->is_admin == 1)
+                                |
+                                <a href="#" class="open-edit">Редактировать</a> |
+                                <a href="{{ route('comment.delete', ['id' => $comment->id]) }}">Удалить</a>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
     </div>
 </div>
 @endsection

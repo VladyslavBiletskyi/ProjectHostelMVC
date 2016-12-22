@@ -53,8 +53,12 @@
         <hr/>
         <div class="row">
             <div class="col col-xs-12">
-                <h3>Схема этажа</h3>
-                <img src="/images/floorSchema.jpg" class="floorSchema">
+                @if (Storage::disk('local')->has('floor/'.$floor->floor_id.'.jpg'))
+                    <h3>Схема этажа</h3>
+                    <div class="col-md-6 col-md-offset-3" align="center">
+                        <img src="{{ route('floor_image', ['filename' => $floor->floor_id.'.jpg'])}}" alt="" class="img-responsive">
+                    </div>
+                @endif
             </div>
         </div>
     </div>

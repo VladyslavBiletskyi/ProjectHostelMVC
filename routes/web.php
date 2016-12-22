@@ -75,3 +75,18 @@ Route::get('/room/{id}', [
     'as' => 'rooms.view',
     'middleware' => 'auth'
 ]);
+
+Route::get('/floor_image/{filename}', [
+    'uses' => 'FloorController@getFloorImage',
+    'as'  => 'floor_image'
+]);
+Route::post('/add_comment', [
+    'uses' => 'CommentController@postAddComment',
+    'as' => 'add.comment',
+    'middleware' => 'auth'
+]);
+Route::get('/delete_comment{id}', [
+    'uses' => 'CommentController@postAddComment',
+    'as' => 'comment.delete',
+    'middleware' => 'auth'
+]);

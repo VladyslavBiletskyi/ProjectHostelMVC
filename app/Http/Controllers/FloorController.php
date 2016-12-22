@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Floor;
 use App\Room;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 //storage for files
 use Illuminate\Support\Facades\Storage;
 // to work with files
@@ -39,5 +40,16 @@ class FloorController extends Controller
         $floor->save();
         $message = "Этаж успешно добавлен.";
         return redirect('/user')->with(['message' => $message]);
+    }
+
+    public function getFloorImage($filename)
+    {
+        $path = storage_path().'/floor/' . $filename;
+        if (file_exists($path)) {
+            //header("Content-Type", 'img/jpeg');
+            $response = new Response($path, 200);
+            $response->header('Content-Type', mime_content_type($path));
+            return $response;
+        }
     }
 }

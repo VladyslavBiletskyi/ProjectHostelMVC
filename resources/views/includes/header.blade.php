@@ -22,9 +22,9 @@
                         Этажи<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/floor/1">Этаж 1</a></li>
-                        <li><a href="/floor/2">Этаж 2</a></li>
-                        <li><a href="/floor/3">Этаж 3</a></li>
+                        @foreach(Floor::all() as $floor)
+                            <li><a href="{{route('floors.view', $floor->floor_id)}}">Этаж {{$floor->floor_id}}</a></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li><a href="#"><i class="fa fa-question" aria-hidden="true"></i> О проекте</a></li>
