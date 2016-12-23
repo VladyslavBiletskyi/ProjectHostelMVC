@@ -31,22 +31,6 @@
                     <p class="description">
                         {{$room->description}}
                     </p>
-                    <br>
-                    <div class="row places">
-                        <div class="col-sm-4">
-                            Всего мест: {{$room->places}}
-                        </div>
-                        <div class="col-sm-4">
-                            Свободно: {{$free}}
-                        </div>
-                        <div class="col-sm-4">
-                            @if($free > 0 && Auth::user()->room_id == 0)
-                                <a href="{{route('book', $room->id)}}" class="btn btn-primary">Забронировать</a>
-                            @elseif(Auth::user()->room_id == $room->id)
-                                <a href="{{route('cancel_booking', $room->id)}}" class="btn btn-primary">Снять бронь</a>
-                            @endif
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -63,6 +47,22 @@
                         </ul>
                     </p>
                     <br>
+                </div>
+                <br>
+                <div class="row places">
+                    <div class="col-sm-4">
+                        Всего мест: {{$room->places}}
+                    </div>
+                    <div class="col-sm-4">
+                        Свободно: {{$free}}
+                    </div>
+                    <div class="col-sm-4">
+                        @if($free > 0 && Auth::user()->room_id == 0)
+                            <a href="{{route('book', $room->id)}}" class="btn btn-primary">Забронировать</a>
+                        @elseif(Auth::user()->room_id == $room->id)
+                            <a href="{{route('cancel_booking', $room->id)}}" class="btn btn-primary">Снять бронь</a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
